@@ -48,6 +48,7 @@ try {
     }
     if ($failed) { exit 1 }
     Write-Host "PASS: all $(($expected.Values | Measure-Object -Sum).Sum) planted artifacts detected with the expected severity"
+    exit 0   # procsweep itself exits 1 when it reports findings; don't let that leak out
 }
 finally {
     if (-not $proc.HasExited) { Stop-Process -Id $proc.Id -Force }
