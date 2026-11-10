@@ -11,6 +11,8 @@ procsweep is a small, read-only, user-mode scanner for incident response and thr
 - Context-aware severity, so the default output stays quiet on a normal desktop
 - Text output for people, JSON output for pipelines
 
+The event-log side of the same techniques lives in [injection-detections](https://github.com/skyquaz/injection-detections): Sigma rules for Sysmon that are evaluated against real attack logs in CI.
+
 ## Download
 
 Get `procsweep.exe` (x64, no dependencies) from the [latest release](https://github.com/skyquaz/procsweep/releases/latest), or build it yourself (see [Build](#build)). Each release lists the file's SHA-256. The binary is not code-signed, so Windows SmartScreen may warn on first run.
@@ -128,7 +130,7 @@ CI builds procsweep and runs this self-test on a fresh `windows-latest` runner f
 
 - Compare in-memory `.text` of loaded modules against the file on disk (hooks, module stomping)
 - Walk thread call stacks for return addresses in unbacked memory
-- Companion Sigma rules for Sysmon events 8 (CreateRemoteThread), 10 (ProcessAccess) and 25 (ProcessTampering)
+- Sysmon event 25 (ProcessTampering) coverage in [injection-detections](https://github.com/skyquaz/injection-detections), which already covers events 7, 8 and 10
 
 ## Prior art
 
