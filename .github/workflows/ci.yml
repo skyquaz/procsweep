@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build (MSVC, x64)
+        shell: cmd
+        run: build.bat
+
+      - name: Self-test
+        shell: pwsh
+        run: ./tests/run-selftest.ps1
+
+      - name: Upload procsweep.exe
+        uses: actions/upload-artifact@v7
+        with:
+          name: procsweep-${{ github.sha }}
+          path: build/procsweep.exe
+          if-no-files-found: error

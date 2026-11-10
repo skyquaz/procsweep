@@ -1,5 +1,7 @@
 # procsweep
 
+[![ci](https://github.com/skyquaz/procsweep/actions/workflows/ci.yml/badge.svg)](https://github.com/skyquaz/procsweep/actions/workflows/ci.yml)
+
 Find code-injection artifacts in running Windows processes.
 
 procsweep is a small, read-only, user-mode scanner for incident response and threat hunting. It walks the address space and thread list of every process it can open and reports executable memory that has no image file behind it, PE images living in private memory, threads that start outside any mapped image, and image mappings whose file has disappeared. Each finding carries a MITRE ATT&CK technique ID, and the scanner can write flagged memory to disk for offline analysis.
@@ -102,6 +104,8 @@ powershell -ExecutionPolicy Bypass -File tests\run-selftest.ps1
 ...
 PASS: all 7 planted artifacts detected with the expected severity
 ```
+
+CI builds procsweep and runs this self-test on a fresh `windows-latest` runner for every push and pull request.
 
 ## How it works
 
