@@ -9,6 +9,10 @@ procsweep is a small, read-only, user-mode scanner for incident response and thr
 - Context-aware severity, so the default output stays quiet on a normal desktop
 - Text output for people, JSON output for pipelines
 
+## Download
+
+Get `procsweep.exe` (x64, no dependencies) from the [latest release](https://github.com/skyquaz/procsweep/releases/latest), or build it yourself (see [Build](#build)). Each release lists the file's SHA-256. The binary is not code-signed, so Windows SmartScreen may warn on first run.
+
 ## What it detects
 
 | Finding | Meaning | Typical cause | ATT&CK |
